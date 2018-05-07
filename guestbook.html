@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nebulas</title>
+
+<style type="text/css">
+	#banner{
+		width: 100%;
+		height: 30vh;
+	}
+
+
+</style>
+</head>
+<body>
+
+
+<img src="nebulas.jpeg" id="banner" style="margin:0; padding:0;display:block;">
+<div style=" background-image:url(img/bg2.jpg);width:100%; height: 100vh;margin:auto; padding:0;display:block;" id="guestbook"  >
+	
+<div style = "text-align: center; border: 30px solid transparent; border-image:url(img/border1.png) 30 round; border-style: solid; color: white;">
+	<h1><a href="index2.html" style="text-decoration: none; color: white">Sign Guest Book</a></h1>
+</div>
+
+</div>
+
+
+<!-- js -->
+<script type="text/javascript">
+	
+window.onload = function()
+{
+	var entries = JSON.parse(localStorage.getItem('entries') || "[]");
+
+	var i;
+	for(i = 0; i < entries.length; i++)
+	{
+
+		var div = document.createElement("div")
+		div.style.textAlign = "center";
+		div.style.border = "30px solid transparent";
+		div.style.borderImage = "url(img/border1.png) 30 round"
+		div.style.borderStyle= "solid";
+		div.style.color = "white";
+		//.setAttribute("style", "text-align: center; border-style: solid;");
+		var h1 = document.createElement("h1");
+		var h4 = document.createElement("h4");
+		var p = document.createElement("p");
+
+
+		h1.appendChild(document.createTextNode(entries[i].name));
+		h4.appendChild(document.createTextNode(entries[i].location));
+		p.appendChild(document.createTextNode(entries[i].message));
+
+		div.appendChild(h1);
+		div.appendChild(h4);
+		div.appendChild(p);
+
+		document.getElementById('guestbook').appendChild(div);
+
+	}
+}
+
+</script>
+
+</body>
+</html>
