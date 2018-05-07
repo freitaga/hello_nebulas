@@ -52,13 +52,19 @@
 </ul>
 
 
+<script>
 
+</script>
 
-
+<script src=lib/jquery-3.3.1.min.js></script>
+<script src=lib/nebPay.js></script>
+<script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <!-- js -->
+
 <script type="text/javascript">
 
 //redirect to guestbook after signing guestbook
+/*
 window.onload=function() 
 {
   document.getElementById("form").onsubmit=function()
@@ -66,13 +72,59 @@ window.onload=function()
     window.location.replace("guestbook.html");
     return false;
   }
-}
+}*/
 	
+var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+var nebPay = new NebPay();
+
+$("#search_value").attr("disabled",true)
+$("#submit").attr("disabled",true)
+
+
+//to check if the extension is installed
+//if the extension is installed, var "webExtensionWallet" will be injected in to web page
+if(typeof(webExtensionWallet) === "undefined"){
+    //alert ("Extension wallet is not installed, please install it first.")
+    $("#noExtension").removeClass("hide")
+}else{
+    $("#search_value").attr("disabled",false)
+    $("#submit").attr("disabled",false)
+}
+
+var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
+
+document.getElementById("submit").onclick = function(){
+    // $("#search_value").val() 搜索框内的值
+    /*
+    var to = dappAddress;
+    var value = "0";
+    var callFunction = "keep";
+    var callArgs = "[\"" + "\"user\"" + "," + "\"message\"" + "\"]"; //in the form of ["args"]
+    console.log(callArgs);
+    nebPay.call(to, value, callFunction, callArgs, {    
+        callback: partyTime
+	}) ;*/
+}
+
+function partyTime(resp) {
+	console.log("Its time to party");
+	console.log(resp);
+}
+
 // 
 document.getElementById("submit").onclick = function()
 {
      
     
+	var to = dappAddress;
+    var value = "0";
+    var callFunction = "keep";
+    var callArgs = "[" + "\"user\"" + "," + "\"message\"" + "]"; //in the form of ["args"]
+    console.log(callArgs);
+    nebPay.call(to, value, callFunction, callArgs, {    
+        callback: partyTime
+	});
+
     var text = document.getElementById("message").value; //.value gets input values
     var name = document.getElementById("name").value;
     var location = document.getElementById("location").value;
