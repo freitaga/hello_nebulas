@@ -1,6 +1,6 @@
 
 
-(function() {
+
 	
 	// Dimensions of the whole book
 	var BOOK_WIDTH = 830;
@@ -45,6 +45,8 @@
 			dragging: false
 		} );
 	}
+
+
 	
 	// Resize the canvas to match the book size
 	canvas.width = BOOK_WIDTH + ( CANVAS_PADDING * 2 );
@@ -103,6 +105,51 @@
 		}
 	}
 	
+	function refresh() {
+		// Dimensions of the whole book
+		BOOK_WIDTH = 830;
+		BOOK_HEIGHT = 260;
+		
+		// Dimensions of one page in the book
+		PAGE_WIDTH = 400;
+		PAGE_HEIGHT = 250;
+		
+		// Vertical spacing between the top edge of the book and the papers
+		PAGE_Y = ( BOOK_HEIGHT - PAGE_HEIGHT ) / 2;
+		
+		// The canvas size equals to the book dimensions + this padding
+		CANVAS_PADDING = 60;
+		
+		page = 0;
+		
+		canvas = document.getElementById( "pageflip-canvas" );
+		context = canvas.getContext( "2d" );
+		
+		mouse = { x: 0, y: 0 };
+		flips = [];
+		
+		book = document.getElementById( "book" );
+		
+		// List of all the page elements in the DOM
+		pages = book.getElementsByTagName( "section" );
+		
+		// Organize the depth of our pages and create the flip definitions
+		for( var i = 0, len = pages.length; i < len; i++ ) {
+			pages[i].style.zIndex = len - i;
+			
+			flips.push( {
+				// Current progress of the flip (left -1 to right +1)
+				progress: 1,
+				// The target value towards which progress is always moving
+				target: 1,
+				// The page DOM element related to this flip
+				page: pages[i], 
+				// True while the page is being dragged
+				dragging: false
+			} );
+		}
+	}
+
 	function render() {
 		
 		// Reset all pixels in the canvas
@@ -216,6 +263,6 @@
 		context.restore();
 	}
 	
-})();
+
 
 
