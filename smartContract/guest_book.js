@@ -1,29 +1,29 @@
 "use strict";
 
-var GuestBookEntry = function(entry) {
+var Entry = function(entry) {
 	if (entry) {
 		var obj = JSON.parse(entry);
         this.address = obj.address
-		this.guest = obj.guest;
-        this.message = obj.message;
+		this.x = obj.x;
+        this.y = obj.y;
 	} else {
         this.address = "";
-	    this.guest = "";
-	    this.message = "";
+	    this.x = "";
+	    this.y = "";
 	}
 };
 
-GuestBookEntry.prototype = {
+Entry.prototype = {
 	toString: function () {
 		return JSON.stringify(this);
 	}
 };
 
-var GuestBook = function () {
+var Horse = function () {
     //store google maps place JSON here (lots of data, good to hide)
     LocalContractStorage.defineMapProperty(this, "repo", {
         parse: function (entry) {
-            return new GuestBookEntry(entry);
+            return new Entry(entry);
         },
         stringify: function (o) {
             return o.toString();
@@ -31,34 +31,34 @@ var GuestBook = function () {
     });
 };
 
-GuestBook.prototype = {
+Horse.prototype = {
     init: function () {
         // todo
     },
 
-    save: function (guest, message) {
+    save: function (x, y) {
 
-        guest = guest.trim();
-        message = message.trim();
-        if (guest === "" || message === ""){
-            throw new Error("empty guest / message");
+        x = x.trim();
+        y = y.trim();
+        if (x === "" || y === ""){
+            throw new Error("empty x / y");
         }
-        if (message.length > 512 || guest.length > 24){
-            throw new Error("guest / message exceed limit length")
+        if (y.length > 512 || x.length > 24){
+            throw new Error("x / y exceed limit length")
         }
 
         var from = Blockchain.transaction.from;
-        var GuestBookEntry = this.repo.get(from);
-        if (GuestBookEntry){
-            throw new Error("Sorry, you have already created an entry in the Nebulas Guestbook, please leave room for others :)");
+        var entry = this.repo.get(from);
+        if (entry){
+            throw new Error("One entry pls");
         }
 
-        GuestBookEntry = new GuestBookEntry();
-        GuestBookEntry.address = from;
-        GuestBookEntry.guest = guest;
-        GuestBookEntry.message = message;
+        entry = new Entry();
+        entry.address = from;
+        entry.x = x;
+        entry.y = y;
 
-        this.repo.put(guest, dictItem);
+        this.repo.put(x, entry);
     },
 
     get: function (address) {
@@ -69,4 +69,4 @@ GuestBook.prototype = {
         return this.repo.get(address);
     }
 };
-module.exports = GuestBook;
+module.exports = Horse;

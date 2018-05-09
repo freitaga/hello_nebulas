@@ -15,6 +15,7 @@
 
 
 </style>
+<link type="text/css" href="main.css" rel="stylesheet" media="screen" />
 </head>
 <body>
 
@@ -24,7 +25,7 @@
 <!-- style=" background-image:url(img/bgcandy.jpg);width:100%; height: 100vh;margin:auto; padding:0;display:block;" -->
 <div  >
 
-<form id="form" style = " height: 100vh; font-size: 30pt; text-align: center; border: 30px solid transparent; border-image:url(img/border1.png) 30 round; border-style: solid; background-color: #6564fb;  ">
+<!-- <form id="form" style = " height: 100vh; font-size: 30pt; text-align: center; border: 30px solid transparent; border-image:url(img/border1.png) 30 round; border-style: solid; background-color: #6564fb;  "> -->
 	Guest Name:
 	<br>
 	<input type="text" name="name" maxlength="24" id="name" class="input"> 
@@ -41,8 +42,38 @@
 	<br>
 	<input type="submit" value="Submit"  id="submit" >
 	<!-- <input type="text" name="message" maxlength="512" size="35" height="100px" > -->
-</form>
+<!--</form> -->
 
+</div>
+
+<div id="book">
+	<canvas id="pageflip-canvas"></canvas>
+	<div id="pages">
+		<section id="page1">
+			<div id="page1content">
+				<h2>History</h2>
+				
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2>Usage</h2>
+				<p>Canvas consists of a drawable region defined in HTML code with height and width attributes. JavaScript code may access the area through a full set of drawing functions similar to other common 2D APIs, thus allowing for dynamically generated graphics. Some anticipated uses of canvas include building graphs, animations, games, and image composition.</p>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2>Reactions</h2>
+				<p>At the time of its introduction the canvas element was met with mixed reactions from the web standards community. There have been arguments against Apple's decision to create a new proprietary element instead of supporting the SVG standard. There are other concerns about syntax e.g. the absence of a namespace.</p>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2>Support</h2>
+				<p>The element is currently supported by the latest versions of Mozilla Firefox, Google Chrome, Safari, and Opera. It is not natively implemented by Internet Explorer (IE) as of version 8, though support is in development for Internet Explorer 9; however, many of the Canvas element's features can be supported in IE, for example by using Google or Mozilla plugins, JavaScript libraries and either Adobe Flash or IE's proprietary VML.</p>
+			</div>
+		</section>
+	</div>
 </div>
 
 	
@@ -59,6 +90,7 @@
 <script src=lib/jquery-3.3.1.min.js></script>
 <script src=lib/nebPay.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script type="text/javascript" src="pageflip.js"></script>
 <!-- js -->
 
 <script type="text/javascript">
@@ -114,8 +146,43 @@ function partyTime(resp) {
 // 
 document.getElementById("submit").onclick = function()
 {
-     
+    //var response = JSON.parse();
+
+    var response = {"result":"[{\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}},{\"key\":{\"text1\":\"helalo\",\"text2\":\"nebulass\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}]","execute_err":"","estimate_gas":"20316"};
+
+    console.log(response);
+
+    var result = response.result;
+
+    console.log(result);
+
+    console.log(JSON.parse(result));
+
+    var entries = JSON.parse(result);
+    var entry;
+
+    for(var i = 0; i < entries.length; i++) {
+    	console.log(entries[i]);
+    	entry = entries[i].key;
+    	console.log(entry.text1);
+    	console.log(entry.text2);
+    	console.log(entry.text3);
+    	$( "#page1content" ).append( "<p>" + entry.text1.trim() + " | " + entry.text2.trim() + " | " + entry.text3.trim() + "</p>" );
+    }
+
+	//$( "#page1content" ).append( "<p>" + entry.text1 + "</p>" );
+	//$( "#page1content" ).append( "<p>" + entry.text2 + "</p>" );
+	//$( "#page1content" ).append( "<p>" + entry.text3 + "</p>" );
+
+	$( "#page1content" ).append( "<p>" + "AlexF" + " | " + "Hello Nebulas!" + " | " + "8s8fds9dfg8ghdfg89" + "</p>" );
+
+
+    //console.log(data);
+
+    console.log("test");
+    //console.log(response);
     
+    /*
 	var to = dappAddress;
     var value = "0";
     var callFunction = "keep";
@@ -146,6 +213,7 @@ document.getElementById("submit").onclick = function()
     {
     	localStorage.setItem('entries', JSON.stringify(entries));
     }
+    */
 
 }
 
