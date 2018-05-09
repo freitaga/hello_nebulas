@@ -1,72 +1,120 @@
-"use strict";
+'use strict';
 
-var Entry = function(entry) {
-	if (entry) {
-		var obj = JSON.parse(entry);
-        this.address = obj.address
-		this.x = obj.x;
-        this.y = obj.y;
-	} else {
-        this.address = "";
-	    this.x = "";
-	    this.y = "";
-	}
+
+
+
+var Entry = function(text) {
+
+    if (text) {
+        var o = JSON.parse(text);
+        this.name = o.name;
+        this.location= o.location;
+        this.message = o.message;
+    } else {
+        this.name = "";
+        this.location = "";
+        this.message = "";
+    }
+
+
 };
 
 Entry.prototype = {
-	toString: function () {
-		return JSON.stringify(this);
-	}
+    toString: function() {
+        return JSON.stringify(this);
+    }
 };
 
-var Horse = function () {
-    //store google maps place JSON here (lots of data, good to hide)
-    LocalContractStorage.defineMapProperty(this, "repo", {
-        parse: function (entry) {
-            return new Entry(entry);
+
+var GuestBook = function() {
+    LocalContractStorage.defineMapProperty(this, "test", {
+        parse: function(text) {
+            return new TestFunction(text);
         },
-        stringify: function (o) {
+        stringify: function(o) {
             return o.toString();
         }
     });
+
+    LocalContractStorage.defineMapProperty(this, "arrayMap");
+    LocalContractStorage.defineMapProperty(this, "dataMap");
+    LocalContractStorage.defineProperty(this, "size");
+
 };
 
-Horse.prototype = {
-    init: function () {
-        // todo
+GuestBook.prototype = {
+    init: function() {
+        this.size = 0;
     },
 
-    save: function (x, y) {
+    saveEntry : function(name, message) {
+        name = name.trim();
+        message = message.trim();
 
-        x = x.trim();
-        y = y.trim();
-        if (x === "" || y === ""){
-            throw new Error("empty x / y");
+        // may cause deploy errors
+        if(name == "" || message == ""){
+        	throw new Error("empty Name / Message");
         }
-        if (y.length > 512 || x.length > 24){
-            throw new Error("x / y exceed limit length")
+        if(name.length > 24 || message.length > 512){
+        	throw new Error("Name / Message exceed limit length");
         }
 
         var from = Blockchain.transaction.from;
-        var entry = this.repo.get(from);
-        if (entry){
-            throw new Error("One entry pls");
-        }
+        var entry = new Object();
 
-        entry = new Entry();
-        entry.address = from;
-        entry.x = x;
-        entry.y = y;
+        entry.name = name;
+        entry.message = message;
+        entry.location = from;
 
-        this.repo.put(x, entry);
+        var msg = JSON.stringify(entry);
+
+        var entry = new entry(msg);
+
+        var index = this.size;
+        this.arrayMap.set(index, name);
+        this.dataMap.set(name, entry);
+        this.size += 1;
     },
 
-    get: function (address) {
-        address = address.trim();
-        if ( address === "" ) {
-            throw new Error("empty address")
+    get: function(text2) {
+        text2 = text2.trim();
+
+        return this.dataMap.get(text2);
+    },
+
+    len: function() {
+        return this.size;
+    },
+
+    // return all the entries
+    iterate: function(limit, offset) {
+        limit = parseInt(limit);
+        offset = parseInt(offset);
+        if (offset > this.size) {
+            throw new Error("offset is not valid");
         }
-        return this.repo.get(address);
+        var number = offset + limit;
+        if (number > this.size) {
+            number = this.size;
+        }
+        var result = [];
+        for (var i = offset; i < number; i++) {
+            var key = this.arrayMap.get(i);
+            var object = this.dataMap.get(key);
+            var data = {
+                key: object
+            };
+            result.push(data);
+        }
+        return result;
+    },
+
+    getAll: function() {
+        var all = iterate(this.size, 0);
+
+        return all;
     }
+
 };
-module.exports = Horse;
+
+module.exports = GuestBook;
