@@ -4,11 +4,11 @@
 	
 	// Dimensions of the whole book
 	var BOOK_WIDTH = 830;
-	var BOOK_HEIGHT = 260;
+	var BOOK_HEIGHT = 760;
 	
 	// Dimensions of one page in the book
 	var PAGE_WIDTH = 400;
-	var PAGE_HEIGHT = 250;
+	var PAGE_HEIGHT = 750;
 	
 	// Vertical spacing between the top edge of the book and the papers
 	var PAGE_Y = ( BOOK_HEIGHT - PAGE_HEIGHT ) / 2;
@@ -106,19 +106,6 @@
 	}
 	
 	function refresh() {
-		// Dimensions of the whole book
-		BOOK_WIDTH = 830;
-		BOOK_HEIGHT = 260;
-		
-		// Dimensions of one page in the book
-		PAGE_WIDTH = 400;
-		PAGE_HEIGHT = 250;
-		
-		// Vertical spacing between the top edge of the book and the papers
-		PAGE_Y = ( BOOK_HEIGHT - PAGE_HEIGHT ) / 2;
-		
-		// The canvas size equals to the book dimensions + this padding
-		CANVAS_PADDING = 60;
 		
 		page = 0;
 		
