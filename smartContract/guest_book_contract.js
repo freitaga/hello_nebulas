@@ -9,10 +9,12 @@ var Entry = function(text) {
         var o = JSON.parse(text);
         this.name = o.name;
         this.location= o.location;
+        this.address = o.address;
         this.message = o.message;
     } else {
         this.name = "";
         this.location = "";
+        this.address = "";
         this.message = "";
     }
 
@@ -47,11 +49,12 @@ GuestBook.prototype = {
         this.size = 0;
     },
 
-    saveEntry : function(name, message) {
+    saveEntry : function(name, location, message) {
         name = name.trim();
+        location = location.trim();
         message = message.trim();
 
-        // may cause deploy errors
+        // comments may cause deploy errors
         if(name == "" || message == ""){
         	throw new Error("empty Name / Message");
         }
@@ -63,8 +66,11 @@ GuestBook.prototype = {
         var entry = new Object();
 
         entry.name = name;
+        entry.location = location;
+        entry.address = from
         entry.message = message;
-        entry.location = from;
+
+        
 
         var msg = JSON.stringify(entry);
 
@@ -76,10 +82,10 @@ GuestBook.prototype = {
         this.size += 1;
     },
 
-    get: function(text2) {
-        text2 = text2.trim();
+    get: function(value) {
+        value = value.trim();
 
-        return this.dataMap.get(text2);
+        return this.dataMap.get(value);
     },
 
     len: function() {
@@ -110,7 +116,7 @@ GuestBook.prototype = {
     },
 
     getAll: function() {
-        var all = iterate(this.size, 0);
+        var all = this.iterate(this.size, 0);
 
         return all;
     }

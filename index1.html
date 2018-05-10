@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nebulas</title>
+
+<style type="text/css">
+	#banner{
+		width: 100%;
+		height: 30vh;
+	}
+
+	.input{
+		font-size: 30px;
+	}
+
+
+</style>
+<link type="text/css" href="main.css" rel="stylesheet" media="screen" />
+</head>
+<body>
+
+
+<img src="nebulas.jpeg" id="banner" >
+
+
+<div  >
+
+
+	Guest Name:
+	<br>
+	<input type="text" name="name" maxlength="24" id="name" class="input"> 
+	<br>
+	Location
+	<br>
+	<input type="text" name="location" maxlength="24" id="location"  class="input"> 
+	<br>
+	Message:
+	<br>
+	<textarea rows="4" cols="50" style="resize:none;" maxlength="512" id="message"  class="input">
+		
+	</textarea>
+	<br>
+	<input type="button" value="Submit"  id="submit" >
+	
+</div>
+
+<div id="book">
+	<canvas id="pageflip-canvas"></canvas>
+	<div id="pages">
+		<section id="page1">
+			<div id="page1content">
+				<h2>History</h2>
+				
+			</div>
+		</section>
+	</div>
+</div>
+
+	
+<ul id="list">
+	
+
+</ul>
+
+
+
+<!-- Libraries & Dependancies -->
+<script src=lib/jquery-3.3.1.min.js></script>
+<script src=lib/nebPay.js></script>
+<script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script type="text/javascript" src="js/pageflip.js"></script>
+
+<!-- js -->
+<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+</html>
