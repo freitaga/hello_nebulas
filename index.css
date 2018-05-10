@@ -63,21 +63,19 @@ body, h2, p {
 
 #book {
     background: url("book.png") no-repeat;
-    position: absolute;
+    position: relative;
     width: 830px;
-    height: 260px;
+    height: 760px;
     left: 50%;
-    top: 50%;
     margin-left: -400px;
-    margin-top: -125px;
 }
 
 #pages section {
     background: url("paper.png") no-repeat;
     display: block;
     width: 400px;
-    height: 250px;
-    position: absolute;
+    height: 750px;
+    position: relative;
     left: 415px;
     top: 5px;
     overflow: hidden;
@@ -85,8 +83,9 @@ body, h2, p {
     #pages section>div {
         display: block;
         width: 400px;
-        height: 250px;
+        height: 750px;
         font-size: 12px;
+        padding-top: 1em;
     }
     #pages section p,
     #pages section h2 {
@@ -98,6 +97,10 @@ body, h2, p {
     }
 
 #pageflip-canvas {
-    position: absolute;
+    position: relative;
     z-index: 100;
+}
+
+.divider {
+    border-bottom: 2px solid;
 }
