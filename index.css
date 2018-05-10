@@ -62,7 +62,7 @@ body, h2, p {
 
 
 #book {
-    background: url("book.png") no-repeat;
+    background: url("book_large.png") no-repeat;
     position: relative;
     width: 830px;
     height: 760px;
@@ -71,7 +71,7 @@ body, h2, p {
 }
 
 #pages section {
-    background: url("paper.png") no-repeat;
+    background: url("paper_large.png") no-repeat;
     display: block;
     width: 400px;
     height: 750px;
