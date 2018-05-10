@@ -14,7 +14,7 @@
 	var PAGE_Y = ( BOOK_HEIGHT - PAGE_HEIGHT ) / 2;
 	
 	// The canvas size equals to the book dimensions + this padding
-	var CANVAS_PADDING = 60;
+	var CANVAS_PADDING = 0;
 	
 	var page = 0;
 	
@@ -66,24 +66,29 @@
 	function mouseMoveHandler( event ) {
 		// Offset mouse position so that the top of the book spine is 0,0
 		mouse.x = event.clientX - book.offsetLeft - ( BOOK_WIDTH / 2 );
-		mouse.y = event.clientY - book.offsetTop;
+		mouse.y = event.clientY - book.offsetTop + (window.pageYOffset);
 	}
 	
 	function mouseDownHandler( event ) {
-		// Make sure the mouse pointer is inside of the book
-		if (Math.abs(mouse.x) < PAGE_WIDTH) {
+
+				// Make sure the mouse pointer is inside of the book
+		if (Math.abs(mouse.x) < PAGE_WIDTH && mouse.y >= 0) {
 			if (mouse.x < 0 && page - 1 >= 0) {
 				// We are on the left side, drag the previous page
 				flips[page - 1].dragging = true;
 			}
-			else if (mouse.x > 0 && page + 1 < flips.length) {
+			else if (mouse.x > 0 && page + 1 < flips.length && mouse.y >= 0) {
 				// We are on the right side, drag the current page
 				flips[page].dragging = true;
 			}
 		}
 		
+
 		// Prevents the text selection
-		event.preventDefault();
+		if(mouse.y >=0)
+		{
+			event.preventDefault();
+		}
 	}
 	
 	function mouseUpHandler( event ) {
