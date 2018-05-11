@@ -17,7 +17,7 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
 }
 
-var dappAddress = "n1uNZDpCdb7PEfX3rVbLH1Pa5cYEXEuDhsJ";
+var dappAddress = "n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";
 // above can probably be split into new js  script
 
 
