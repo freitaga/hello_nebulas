@@ -66,9 +66,9 @@ GuestBook.prototype = {
 
         var from = Blockchain.transaction.from;
         var hasEntry = this.dataMap.get(from);
-        if(hasEntry){
-            throw new Error("One entry per wallet please");
-        }
+        // if(hasEntry){
+        //     throw new Error("One entry per wallet please");
+        // }
 
         var timestamp = Blockchain.transaction.timestamp;
         var entry = new Object();

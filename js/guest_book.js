@@ -67,38 +67,37 @@ function fillPage(entries) {
 }
 
 
-// User clicks submit
-/*document.getElementById("submit").onclick = function()
+function AddNewEntry(resp)
 {
+    console.log(resp);
+
+    $( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
+
+
+    refresh();
+   
+
+    if(DEBUG){
+    console.log("test");
+    console.log(data);
+    console.log(response);
+}
     
-	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
+    
+    var to = dappAddress;
+    var value = "0";
+    var callFunction = "iterate";
+    var callArgs = "[" + 20 + "," +  0 + "]"; //in the form of ["args"]
+    console.log(callArgs);
+    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+        callback: updateBook
+    });
 
-
-    var name = document.getElementById("name").value;
-    var location = document.getElementById("location").value;
-    var message = document.getElementById("message").value;
-
-	refresh();
+    refresh();
 
     if(DEBUG){
         console.log(data);
         console.log("test");
         console.log(response);
     }
-
-	var to = dappAddress;
-    var value = "0";
-    var callFunction = "keep";
-
-     // call smart contract method in the form of ["args"]
-    var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
-    console.log(callArgs);
-    nebPay.simulateCall(to, value, callFunction, callArgs, {    
-        callback: updateBook
-	});
-
-    
-
-   
-
-}*/
+}

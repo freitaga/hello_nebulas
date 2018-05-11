@@ -5,9 +5,7 @@ var DEBUG = false;
 var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
 var nebPay = new NebPay();
 
-//$("#search_value").attr("disabled",true)
-//$("#submit").attr("disabled",true)
-
+var country_code;
 
 //to check if the extension is installed
 //if the extension is installed, var "webExtensionWallet" will be injected in to web page
@@ -62,9 +60,7 @@ document.getElementById("submit").onclick = function()
     //call smart contract method in the form of ["args"]
     var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
     console.log(callArgs);
-    /*nebPay.call(to, value, callFunction, callArgs, {    
-        callback: redirect
-	});*/
+    
 
     callFunction = "iterate";
     callArgs = "[" + 20 + "," + 0 + "]";
