@@ -23,9 +23,9 @@ var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
 // above can probably be split into new js  script
 
 
-function redirect(){
+function redirect(resp){
 // redirect to guestbook.html
-
+    console.log(resp)
 }
 
 // User clicks submit
@@ -53,7 +53,7 @@ document.getElementById("submit").onclick = function()
     // of the smart contract 
 	var to = dappAddress;
     var value = "0";
-    var callFunction = "keep";
+    var callFunction = "saveEntry";
 
      // call smart contract method in the form of ["args"]
     var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";

@@ -368,7 +368,7 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
 }
 
-var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
+var dappAddress = "n1vLDEfH3TD75RXXxhkJmnMX8zGx7waHe9a";////"n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
 
 document.getElementById("submit").onclick = function(){
     // $("#search_value").val() 搜索框内的值
@@ -445,6 +445,47 @@ function fillPage(entries) {
     $("#pages").append(page);
 }
 
+function AddNewEntry(resp)
+{
+	console.log(resp);
+
+	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
+
+
+	refresh();
+    //console.log(data);
+
+    console.log("test");
+    //console.log(response);
+    
+    
+	var to = dappAddress;
+    var value = "0";
+    var callFunction = "iterate";
+    var callArgs = "[" + 20 + "," +  0 + "]"; //in the form of ["args"]
+    console.log(callArgs);
+    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+        callback: updateBook
+	});
+
+    var text = document.getElementById("message").value; //.value gets input values
+    var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+   
+  
+
+  var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+    var message = document.getElementById("message").value;
+
+	refresh();
+
+    if(DEBUG){
+        console.log(data);
+        console.log("test");
+        console.log(response);
+    }
+}
 
 // 
 document.getElementById("submit").onclick = function()
@@ -484,46 +525,25 @@ document.getElementById("submit").onclick = function()
 	//$( "#page1content" ).append( "<p>" + entry.text2 + "</p>" );
 	//$( "#page1content" ).append( "<p>" + entry.text3 + "</p>" );
 
-	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
+	var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+    var message = document.getElementById("comment").value;
 
-
-	refresh();
-    //console.log(data);
-
-    console.log("test");
-    //console.log(response);
-    
-    
+    // nebPay.js get results back from the smart contract
+    // command: "save"
+    // Summary: saves users entry and enters into the local storage
+    // of the smart contract 
 	var to = dappAddress;
     var value = "0";
-    var callFunction = "iterate";
-    var callArgs = "[" + 20 + "," +  0 + "]"; //in the form of ["args"]
+    var callFunction = "saveEntry";
+
+     // call smart contract method in the form of ["args"]
+    var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
     console.log(callArgs);
     nebPay.simulateCall(to, value, callFunction, callArgs, {    
-        callback: updateBook
+        callback: AddNewEntry
 	});
 
-    var text = document.getElementById("message").value; //.value gets input values
-    var name = document.getElementById("name").value;
-    var location = document.getElementById("location").value;
-   
-    /*
-    var entry = { 'name':name, 'location':location, 'message':text};
-    var entries = JSON.parse(localStorage.getItem('entries') || "[]");
-
-    entries.push(entry);
-
-    // later also check for valid entries
-    
-    // type clear in name to clear local storage
-    if(entry.name == "clear")
-    {
-    	localStorage.removeItem('entries');
-    }
-    else if(entries.length > 0)
-    {
-    	localStorage.setItem('entries', JSON.stringify(entries));
-    }*/
     
 
 }

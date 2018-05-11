@@ -31,7 +31,7 @@ Entry.prototype = {
 
 
 var GuestBook = function() {
-    LocalContractStorage.defineMapProperty(this, "test", {
+    LocalContractStorage.defineMapProperty(this, "entry", {
         parse: function(text) {
             return new TestFunction(text);
         },
@@ -65,7 +65,7 @@ GuestBook.prototype = {
         }
 
         var from = Blockchain.transaction.from;
-        var hasEntry = this.repo.get(from);
+        var hasEntry = this.dataMap.get(from);
         if(hasEntry){
             throw new Error("One entry per wallet please");
         }
@@ -83,11 +83,11 @@ GuestBook.prototype = {
 
         var msg = JSON.stringify(entry);
 
-        var entry = new entry(msg);
+        var entry = new Entry(msg);
 
         var index = this.size;
-        this.arrayMap.set(index, name);
-        this.dataMap.set(name, entry);
+        this.arrayMap.set(index, from);
+        this.dataMap.set(from, entry);
         this.size += 1;
     },
 
@@ -96,6 +96,8 @@ GuestBook.prototype = {
 
         return this.dataMap.get(value);
     },
+
+
 
     len: function() {
         return this.size;
