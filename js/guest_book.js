@@ -23,7 +23,7 @@ function updateBook(response) {
         entry = entries[i].key;
         entryList.push(entry);
 
-        if(i % 6 == 0){
+        if(entryList.length % 6 == 0){
             fillPage(entryList);
             entryList = [];
         }
@@ -43,7 +43,7 @@ function updateBook(response) {
 
 function generateEntry(entry) {
     console.log("generating entry: " + entry);
-    var entry = $( "<p/>").append( entry.address + "<br>" + entry.name + " " + entry.location + " " + insertFlag(entry.location.toLowerCase()) + "<br>" + entry.message);
+    var entry = $( "<p/>").append( entry.name + " " + entry.location + " " + insertFlag(entry.location.toLowerCase()) + "<br>" + entry.message + "<br>" + entry.address);
     return entry;
 }
 
@@ -59,9 +59,7 @@ function fillPage(entries) {
 
     for(var i = 0; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
-        console.log(entry);
         container.append(entry);
-        console.log(page);
     }
     page.append(container);
 
