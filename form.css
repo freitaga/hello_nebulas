@@ -10,6 +10,8 @@ body
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
+
+
 #feedback-page{
 	text-align:center;
 }
@@ -48,6 +50,7 @@ body
 	width:100%;
 	box-sizing: border-box;
 	border: 3px solid rgba(0,0,0,0);
+	resize: none;
 }
 /*Inputs styles*/
 .montform .feedback-input:focus{
@@ -56,6 +59,7 @@ body
 	color: #3498db;
 	outline: none;
   padding: 13px 13px 13px 54px;
+  
 }
 
 
