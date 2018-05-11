@@ -5,8 +5,8 @@ var DEBUG = false;
 var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
 var nebPay = new NebPay();
 
-$("#search_value").attr("disabled",true)
-$("#submit").attr("disabled",true)
+//$("#search_value").attr("disabled",true)
+//$("#submit").attr("disabled",true)
 
 
 //to check if the extension is installed
@@ -19,7 +19,7 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
 }
 
-var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
+var dappAddress = "n1wPvUckgg6PfEV9WzEk73wjGu2ShdBsNs7";
 // above can probably be split into new js  script
 
 
@@ -39,6 +39,10 @@ document.getElementById("submit").onclick = function()
     var location = document.getElementById("location").value;
     var message = document.getElementById("message").value;
 
+    console.log(name);
+    console.log(location);
+    console.log(message);
+
 	refresh();
 
     if(DEBUG){
@@ -53,12 +57,12 @@ document.getElementById("submit").onclick = function()
     // of the smart contract 
 	var to = dappAddress;
     var value = "0";
-    var callFunction = "keep";
+    var callFunction = "saveEntry";
 
-     // call smart contract method in the form of ["args"]
+    //call smart contract method in the form of ["args"]
     var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
     console.log(callArgs);
-    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+    nebPay.call(to, value, callFunction, callArgs, {    
         callback: redirect
 	});
 

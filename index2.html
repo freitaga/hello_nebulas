@@ -37,6 +37,7 @@
 	            </p>
 	            <p class="location">
 	                <select name="location" required class="feedback-input" id="location" placeholder="Location">
+	                	<option value="" disabled selected>Location</option>
 	                	<option value="AF">Afghanistan</option>
 						<option value="AX">Åland Islands</option>
 						<option value="AL">Albania</option>
@@ -289,7 +290,7 @@
 				</select>
 	            </p>
 	            <p class="text">
-	                <textarea name="message" class="feedback-input" id="comment" placeholder="Message"></textarea>
+	                <textarea name="message" class="feedback-input" id="message" placeholder="Message"></textarea>
 	            </p>
 	            <div class="submit">
 	                <button id="submit" type="button" class="button-blue">SUBMIT</button>
@@ -327,6 +328,8 @@
 <script src=lib/nebPay.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <script type="text/javascript" src="js/pageflip.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
 <!-- js -->
 
 <script type="text/javascript">
@@ -370,18 +373,6 @@ if(typeof(webExtensionWallet) === "undefined"){
 
 var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
 
-document.getElementById("submit").onclick = function(){
-    // $("#search_value").val() 搜索框内的值
-    /*
-    var to = dappAddress;
-    var value = "0";
-    var callFunction = "keep";
-    var callArgs = "[\"" + "\"user\"" + "," + "\"message\"" + "\"]"; //in the form of ["args"]
-    console.log(callArgs);
-    nebPay.call(to, value, callFunction, callArgs, {    
-        callback: partyTime
-	}) ;*/
-}
 
 function insertFlag(country_code) {
 	return '<img id="flag" src="img/blank.gif" class="flag flag-' + country_code + '" alt="Czech Republic" />';
@@ -447,8 +438,8 @@ function fillPage(entries) {
 
 
 // 
-document.getElementById("submit").onclick = function()
-{
+//document.getElementById("submit").onclick = function()
+//{
     //var response = JSON.parse();
 
    
@@ -483,10 +474,10 @@ document.getElementById("submit").onclick = function()
 	//$( "#page1content" ).append( "<p>" + entry.text1 + "</p>" );
 	//$( "#page1content" ).append( "<p>" + entry.text2 + "</p>" );
 	//$( "#page1content" ).append( "<p>" + entry.text3 + "</p>" );
-
+	
 	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
 
-
+	/*
 	refresh();
     //console.log(data);
 
@@ -505,7 +496,7 @@ document.getElementById("submit").onclick = function()
 
     var text = document.getElementById("message").value; //.value gets input values
     var name = document.getElementById("name").value;
-    var location = document.getElementById("location").value;
+    var location = document.getElementById("location").value;*/
    
     /*
     var entry = { 'name':name, 'location':location, 'message':text};
@@ -526,7 +517,7 @@ document.getElementById("submit").onclick = function()
     }*/
     
 
-}
+//}
 
 </script>
 
