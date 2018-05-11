@@ -63,8 +63,6 @@ document.getElementById("submit").onclick = function()
         callback: redirect
 	});
 
-
-
-   
-
 }
+
+$(document).ready(refreshBook());
