@@ -1,3 +1,6 @@
+var entryIndex = 0;
+var pageIndex = 0;
+
 function insertFlag(country_code) {
     return '<img id="flag" src="img/blank.gif" class="flag flag-' + country_code + '"style="height:26px""  />';
 }
@@ -36,20 +39,12 @@ function updateBook(response) {
     }
     fillPages(entryList); // maybe return bool
 
-    console.log(entryList);
-
-    if(entryList.length > 0) {
-        console.log("filling last page with remaining entries");
-        fillPages(entryList);
-        entryList = [];
-    }
-
     refresh();
 }
 
 function generateEntry(entry) {
     console.log("generating entry: " + entry);
-    var entry = $( "<p/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
+    var entry = $( "<p id=entry" + entryIndex + "/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
     return entry;
 }
 
@@ -61,7 +56,8 @@ function generatePage() {
 function fillPages(entries) {
     var entry;
     var page = generatePage();
-    var container = $("<div/>");
+    var container = $("<div page" + pageIndex + "/>");
+    var pageHeight = 0;
 
     page.append(container);
     $("#pages").append(page);
@@ -70,26 +66,48 @@ function fillPages(entries) {
     for(var i = 0; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
 
-        console.log(entry.outerHeight());
-        console.log($("<p/>").outerHeight());
-        console.log(container.offsetHeight);
+        console.log("Page height is " + pageHeight);
 
+        if(pageHeight > 750) {
+            //make new page
+            console.log("Making new page");
+            pageIndex++;
+            page = generatePage();
+            container = $("<div page" + pageIndex + "/>");
+
+            page.append(container);
+            $("#pages").append(page);
+            pageHeight = 0;
+
+        }
+
+        container.append(entry);
+        console.log("searching for entry by id entry" + entryIndex);
+        console.log($("#entry" + entryIndex).outerHeight());
+        pageHeight += $("#entry" + entryIndex).outerHeight();
+        entryIndex++;
+
+
+        /*
         if((container.offsetHeight + entry.offsetHeight) < 730){
             container.append(entry);
+            console.log("searching for entry by id entry" + entryIndex);
+            console.log($("#entry" + (entryIndex - 1)).outerHeight());
         }
         else{
+            pageIndex++;
             // complete current page
             page.append(container);
             $("#pages").append(page);
 
             //new page
-            var page = generatePage();
-            var container = $("<div/>");
+            page = generatePage();
+            container = $("<div page" + pageIndex + "/>");
 
             // start page with current entry
             container.append(entry);
 
-        }
+        }*/
 
     }
 
