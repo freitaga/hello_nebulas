@@ -122,3 +122,5 @@ function AddNewEntry(resp)
         console.log(response);
     }
 }
+
+$(document).ready(refreshBook());

@@ -65,4 +65,3 @@ document.getElementById("submit").onclick = function()
 
 }
 
-$(document).ready(refreshBook());
