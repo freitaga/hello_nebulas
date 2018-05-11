@@ -59,11 +59,6 @@ document.getElementById("submit").onclick = function()
     var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
     console.log(callArgs);
 
-    
-
-     callFunction = "iterate";
-     callArgs = "[" + 20 + "," + 0 + "]";
-
     nebPay.call(to, value, callFunction, callArgs, {    
         callback: redirect
 	});
