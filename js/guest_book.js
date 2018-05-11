@@ -11,17 +11,7 @@ function convertToCountry(country_code) {
 }
 
 function updateBook(response) {
-    console.log("Its time to party");
-    //console.log(response);
-
-    //var result = response.result;
-
     result = response.result;
-
-
-    console.log(result);
-
-    console.log(JSON.parse(result));
 
     var entries = JSON.parse(result);
     var entry;
@@ -30,11 +20,6 @@ function updateBook(response) {
     for(var i = 0; i < entries.length; i++) {
         entry = entries[i].key;
         entryList.push(entry);
-
-        // if(entryList.length % 6 == 0){
-        //     fillPage(entryList);
-        //     entryList = [];
-        // }
         
     }
     fillPages(entryList); // maybe return bool
@@ -43,7 +28,6 @@ function updateBook(response) {
 }
 
 function generateEntry(entry) {
-    console.log("generating entry: " + entry);
     var entry = $( "<p id=entry" + entryIndex + "/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
     return entry;
 }
@@ -66,10 +50,10 @@ function fillPages(entries) {
     for(var i = 0; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
 
-        console.log("Page height is " + pageHeight);
+        //console.log("Page height is " + pageHeight);
         container.append(entry);
-        console.log("searching for entry by id entry" + entryIndex);
-        console.log($("#entry" + entryIndex).outerHeight());
+        //console.log("searching for entry by id entry" + entryIndex);
+        //console.log($("#entry" + entryIndex).outerHeight());
         pageHeight += $("#entry" + entryIndex).outerHeight();
 
         if(pageHeight > 750) {
@@ -78,7 +62,7 @@ function fillPages(entries) {
             $("#entry" + entryIndex).remove();
 
             //make new page
-            console.log("Making new page");
+            //console.log("Making new page");
             pageIndex++;
             page = generatePage();
             container = $("<div page" + pageIndex + "/>");
@@ -90,41 +74,8 @@ function fillPages(entries) {
             pageHeight = $("#entry" + entryIndex).outerHeight();
 
         }
-
         entryIndex++;
-
-
-        /*
-        if((container.offsetHeight + entry.offsetHeight) < 730){
-            container.append(entry);
-            console.log("searching for entry by id entry" + entryIndex);
-            console.log($("#entry" + (entryIndex - 1)).outerHeight());
-        }
-        else{
-            pageIndex++;
-            // complete current page
-            page.append(container);
-            $("#pages").append(page);
-
-            //new page
-            page = generatePage();
-            container = $("<div page" + pageIndex + "/>");
-
-            // start page with current entry
-            container.append(entry);
-
-        }*/
-
     }
-
-// /// old
-//     for(var i = 0; i < entries.length; i++) {
-//         entry = generateEntry(entries[i]);
-//         container.append(entry);
-//     }
-//     page.append(container);
-
-//     $("#pages").append(page);
  }
 
 function refreshBook() {
@@ -146,21 +97,26 @@ function refreshBook() {
 
 function AddNewEntry(resp)
 {
+    /*
     console.log(resp);
-
-    $( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
-
 
     refresh();
    
 
+
+    var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+    var message = document.getElementById("message").value;
+
+
+
     if(DEBUG){
-    console.log("test");
-    console.log(data);
-    console.log(response);
-}
+        console.log("test");
+        console.log(data);
+        console.log(response);
+    }*/
     
-    
+    /*
     var to = dappAddress;
     var value = "0";
     var callFunction = "iterate";
@@ -176,7 +132,7 @@ function AddNewEntry(resp)
         console.log(data);
         console.log("test");
         console.log(response);
-    }
+    }*/
 }
 
 //$(document).ready(refreshBook());

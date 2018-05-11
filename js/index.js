@@ -14,7 +14,7 @@ var country_code;
 if(typeof(webExtensionWallet) === "undefined"){
     //alert ("Extension wallet is not installed, please install it first.")
     $("#noExtension").removeClass("hide")
-}else{
+} else {
     $("#search_value").attr("disabled",false)
     $("#submit").attr("disabled",false)
     refreshBook();
