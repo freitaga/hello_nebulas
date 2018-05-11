@@ -383,11 +383,20 @@ document.getElementById("submit").onclick = function(){
 	}) ;*/
 }
 
+function insertFlag(country_code) {
+	return '<img id="flag" src="img/blank.gif" class="flag flag-' + country_code + '" alt="Czech Republic" />';
+}
+
 function updateBook(response) {
 	console.log("Its time to party");
-	console.log(response);
+	//console.log(response);
 
-    var result = response.result;
+    //var result = response.result;
+
+    var result = {"result":"[{\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"ca\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"us\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"us\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\",\"location\":\"us\"}}, {\"key\":{\"text1\":\"helalo\",\"text2\":\"nebulass\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}]","execute_err":"","estimate_gas":"20316"};
+
+    result = result.result;
+
 
     console.log(result);
 
@@ -411,7 +420,7 @@ function updateBook(response) {
 
 function generateEntry(entry) {
 	console.log("generating entry: " + entry);
-	var entry = $( "<p/>").append( entry.text1 + "<br>" + entry.text2 + "<br>" + entry.text3 );
+	var entry = $( "<p/>").append( entry.text3 + "<br>" + entry.text1 + " " + insertFlag(entry.location) + "<br>" + entry.text2);
 	return entry;
 }
 
@@ -444,9 +453,9 @@ document.getElementById("submit").onclick = function()
 
    
 
-    /*
+    
 
-    {"result":"[{\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"helalo\",\"text2\":\"nebulass\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}]","execute_err":"","estimate_gas":"20316"}
+    /*{"result":"[{\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"ca\"}}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}, \"location\":\"us\"}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}, \"location\":\"de\"}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}, \"location\":\"de\"}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}}, {\"key\":{\"text1\":\"helalo\",\"text2\":\"nebulass\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\"}, \"location\":\"de\"}]","execute_err":"","estimate_gas":"20316"}
 
     */
     /*
