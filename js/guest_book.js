@@ -66,6 +66,22 @@ function fillPage(entries) {
     $("#pages").append(page);
 }
 
+function refreshBook() {
+    var to = dappAddress;
+    var value = "0";
+    var callFunction = "getAll";
+    var callArgs = "";
+
+    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+        callback: updateBook
+    });
+    
+}
+
+document.getElementById("refresh").onclick = function() {
+    refreshBook();
+}
+
 
 function AddNewEntry(resp)
 {
