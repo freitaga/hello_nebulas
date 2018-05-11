@@ -24,6 +24,7 @@ var dappAddress = "n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";
 function redirect(resp){
 // redirect to guestbook.html
     console.log(resp)
+    AddNewEntry(resp);
 }
 
 // User clicks submit
@@ -60,8 +61,8 @@ document.getElementById("submit").onclick = function()
 
     
 
-    // callFunction = "iterate";
-    // callArgs = "[" + 20 + "," + 0 + "]";
+     callFunction = "iterate";
+     callArgs = "[" + 20 + "," + 0 + "]";
 
     nebPay.call(to, value, callFunction, callArgs, {    
         callback: redirect

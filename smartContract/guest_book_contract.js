@@ -31,7 +31,7 @@ Entry.prototype = {
 
 
 var GuestBook = function() {
-    LocalContractStorage.defineMapProperty(this, "entry", {
+    LocalContractStorage.defineMapProperty(this, "ent", {
         parse: function(text) {
             return new TestFunction(text);
         },
