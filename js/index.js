@@ -15,6 +15,7 @@ if(typeof(webExtensionWallet) === "undefined"){
 }else{
     $("#search_value").attr("disabled",false)
     $("#submit").attr("disabled",false)
+    refreshBook();
 }
 
 var dappAddress = "n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";

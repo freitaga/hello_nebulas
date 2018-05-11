@@ -179,4 +179,4 @@ function AddNewEntry(resp)
     }
 }
 
-$(document).ready(refreshBook());
+//$(document).ready(refreshBook());

@@ -76,6 +76,7 @@ body {
 }
 
 .banner-logo {
+	max-width: 100%;
 	display:block;
 	margin: 0 auto;
 }
@@ -88,6 +89,7 @@ body {
 .content {
 	width: 100%;
 	background: #3498db;
+	padding-bottom: 30px;
 }
 
 #description {
@@ -106,18 +108,21 @@ body {
 }
 
 #instructions{
+	justify-content: center;
 	display: flex;
-	height: 500px;
+	min-height: 500px;
 	border-bottom: 2px solid ;
 	color: #3498db;
 	background: white;
 }
 
 .instructions-content{
+	max-width: 25%;
 	text-align: center;
 	margin-top: 40px;
-	margin-left: 80px;
-	margin-right: 80px;
+	margin-bottom: 40px;
+	margin-left: 25px;
+	margin-right: 25px;
 	font-family: "Open Sans";
 	color: #3498db;
 	background: white;
