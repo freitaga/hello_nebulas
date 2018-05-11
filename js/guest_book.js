@@ -1,3 +1,6 @@
+var entryIndex = 0;
+var pageIndex = 0;
+
 function insertFlag(country_code) {
     return '<img id="flag" src="img/blank.gif" class="flag flag-' + country_code + '"style="height:26px""  />';
 }
@@ -28,27 +31,20 @@ function updateBook(response) {
         entry = entries[i].key;
         entryList.push(entry);
 
-        if(entryList.length % 6 == 0){
-            fillPage(entryList);
-            entryList = [];
-        }
+        // if(entryList.length % 6 == 0){
+        //     fillPage(entryList);
+        //     entryList = [];
+        // }
         
     }
-
-    console.log(entryList);
-
-    if(entryList.length > 0) {
-        console.log("filling last page with remaining entries");
-        fillPage(entryList);
-        entryList = [];
-    }
+    fillPages(entryList); // maybe return bool
 
     refresh();
 }
 
 function generateEntry(entry) {
     console.log("generating entry: " + entry);
-    var entry = $( "<p/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
+    var entry = $( "<p id=entry" + entryIndex + "/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
     return entry;
 }
 
@@ -57,19 +53,73 @@ function generatePage() {
     return page;
 }
 
-function fillPage(entries) {
+function fillPages(entries) {
     var entry;
     var page = generatePage();
-    var container = $("<div/>");
+    var container = $("<div page" + pageIndex + "/>");
+    var pageHeight = 0;
 
+    page.append(container);
+    $("#pages").append(page);
+    
+    //////new
     for(var i = 0; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
-        container.append(entry);
-    }
-    page.append(container);
 
-    $("#pages").append(page);
-}
+        console.log("Page height is " + pageHeight);
+
+        if(pageHeight > 750) {
+            //make new page
+            console.log("Making new page");
+            pageIndex++;
+            page = generatePage();
+            container = $("<div page" + pageIndex + "/>");
+
+            page.append(container);
+            $("#pages").append(page);
+            pageHeight = 0;
+
+        }
+
+        container.append(entry);
+        console.log("searching for entry by id entry" + entryIndex);
+        console.log($("#entry" + entryIndex).outerHeight());
+        pageHeight += $("#entry" + entryIndex).outerHeight();
+        entryIndex++;
+
+
+        /*
+        if((container.offsetHeight + entry.offsetHeight) < 730){
+            container.append(entry);
+            console.log("searching for entry by id entry" + entryIndex);
+            console.log($("#entry" + (entryIndex - 1)).outerHeight());
+        }
+        else{
+            pageIndex++;
+            // complete current page
+            page.append(container);
+            $("#pages").append(page);
+
+            //new page
+            page = generatePage();
+            container = $("<div page" + pageIndex + "/>");
+
+            // start page with current entry
+            container.append(entry);
+
+        }*/
+
+    }
+
+// /// old
+//     for(var i = 0; i < entries.length; i++) {
+//         entry = generateEntry(entries[i]);
+//         container.append(entry);
+//     }
+//     page.append(container);
+
+//     $("#pages").append(page);
+ }
 
 function refreshBook() {
     var to = dappAddress;
