@@ -373,6 +373,47 @@ if(typeof(webExtensionWallet) === "undefined"){
 }
 
 
+function AddNewEntry(resp)
+{
+	console.log(resp);
+
+	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
+
+
+	refresh();
+    //console.log(data);
+
+    console.log("test");
+    //console.log(response);
+    
+    
+	var to = dappAddress;
+    var value = "0";
+    var callFunction = "iterate";
+    var callArgs = "[" + 20 + "," +  0 + "]"; //in the form of ["args"]
+    console.log(callArgs);
+    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+        callback: updateBook
+	});
+
+    var text = document.getElementById("message").value; //.value gets input values
+    var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+   
+  
+
+  var name = document.getElementById("name").value;
+    var location = document.getElementById("location").value;
+    var message = document.getElementById("message").value;
+
+	refresh();
+
+    if(DEBUG){
+        console.log(data);
+        console.log("test");
+        console.log(response);
+    }
+}
 
 // 
 //document.getElementById("submit").onclick = function()
@@ -411,47 +452,6 @@ if(typeof(webExtensionWallet) === "undefined"){
 	//$( "#page1content" ).append( "<p>" + entry.text1 + "</p>" );
 	//$( "#page1content" ).append( "<p>" + entry.text2 + "</p>" );
 	//$( "#page1content" ).append( "<p>" + entry.text3 + "</p>" );
-	
-	$( "#page1content" ).append( "<p>" + "AlexF" + " " + "Hello Nebulas!" + " " + "8s8fds9dfg8ghdfg89" + "</p>" );
-
-	/*
-	refresh();
-    //console.log(data);
-
-    console.log("test");
-    //console.log(response);
-    
-    
-	var to = dappAddress;
-    var value = "0";
-    var callFunction = "iterate";
-    var callArgs = "[" + 20 + "," +  0 + "]"; //in the form of ["args"]
-    console.log(callArgs);
-    nebPay.simulateCall(to, value, callFunction, callArgs, {    
-        callback: updateBook
-	});
-
-    var text = document.getElementById("message").value; //.value gets input values
-    var name = document.getElementById("name").value;
-    var location = document.getElementById("location").value;*/
-   
-    /*
-    var entry = { 'name':name, 'location':location, 'message':text};
-    var entries = JSON.parse(localStorage.getItem('entries') || "[]");
-
-    entries.push(entry);
-
-    // later also check for valid entries
-    
-    // type clear in name to clear local storage
-    if(entry.name == "clear")
-    {
-    	localStorage.removeItem('entries');
-    }
-    else if(entries.length > 0)
-    {
-    	localStorage.setItem('entries', JSON.stringify(entries));
-    }*/
     
 
 //}

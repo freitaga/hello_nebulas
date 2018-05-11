@@ -23,9 +23,9 @@ var dappAddress = "n1vLDEfH3TD75RXXxhkJmnMX8zGx7waHe9a";
 // above can probably be split into new js  script
 
 
-function redirect(){
+function redirect(resp){
 // redirect to guestbook.html
-
+    console.log(resp)
 }
 
 // User clicks submit
