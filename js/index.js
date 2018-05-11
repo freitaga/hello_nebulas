@@ -19,7 +19,7 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
 }
 
-var dappAddress = "n1wPvUckgg6PfEV9WzEk73wjGu2ShdBsNs7";
+var dappAddress = "n1vLDEfH3TD75RXXxhkJmnMX8zGx7waHe9a";
 // above can probably be split into new js  script
 
 
@@ -62,10 +62,16 @@ document.getElementById("submit").onclick = function()
     //call smart contract method in the form of ["args"]
     var callArgs = "[" + "\"" + name + "\", \"" + location + "\" , \"" + message + "\" ]";
     console.log(callArgs);
-    nebPay.call(to, value, callFunction, callArgs, {    
+    /*nebPay.call(to, value, callFunction, callArgs, {    
         callback: redirect
-	});
+	});*/
 
+    callFunction = "iterate";
+    callArgs = "[" + 20 + "," + 0 + "]";
+
+    nebPay.simulateCall(to, value, callFunction, callArgs, {    
+        callback: updateBook
+    });
     
 
    

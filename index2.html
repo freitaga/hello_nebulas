@@ -329,6 +329,7 @@
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <script type="text/javascript" src="js/pageflip.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/guest_book.js"></script>
 
 <!-- js -->
 
@@ -371,70 +372,6 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
 }
 
-var dappAddress = "n1rVfyDYFn4tEbTgp85nKxR5scoKJTyZ2pW";
-
-
-function insertFlag(country_code) {
-	return '<img id="flag" src="img/blank.gif" class="flag flag-' + country_code + '" alt="Czech Republic" />';
-}
-
-function updateBook(response) {
-	console.log("Its time to party");
-	//console.log(response);
-
-    //var result = response.result;
-
-    var result = {"result":"[{\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"ca\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"us\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"us\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}, {\"key\":{\"text1\":\"hello\",\"text2\":\"nebulas\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\",\"location\":\"us\"}}, {\"key\":{\"text1\":\"helalo\",\"text2\":\"nebulass\",\"text3\":\"n1bQQmGnXstHREG7YccNE1XXgQwWU6f7eHh\", \"location\":\"de\"}}]","execute_err":"","estimate_gas":"20316"};
-
-    result = result.result;
-
-
-    console.log(result);
-
-    console.log(JSON.parse(result));
-
-    var entries = JSON.parse(result);
-    var entry;
-    var entryList = [];
-
-    for(var i = 0; i < entries.length; i++) {
-    	if(i % 6 == 0){
-    		fillPage(entryList);
-    		entryList = [];
-		}
-    	entry = entries[i].key;
-    	entryList.push(entry);
-    }
-
-    refresh();
-}
-
-function generateEntry(entry) {
-	console.log("generating entry: " + entry);
-	var entry = $( "<p/>").append( entry.text3 + "<br>" + entry.text1 + " " + insertFlag(entry.location) + "<br>" + entry.text2);
-	return entry;
-}
-
-function generatePage() {
-	var page = $("<section/>")
-	return page;
-}
-
-function fillPage(entries) {
-	var entry;
-	var page = generatePage();
-	var container = $("<div/>");
-
-	for(var i = 0; i < entries.length; i++) {
-    	entry = generateEntry(entries[i]);
-    	console.log(entry);
-    	container.append(entry);
-    	console.log(page);
-    }
-    page.append(container);
-
-    $("#pages").append(page);
-}
 
 
 // 
