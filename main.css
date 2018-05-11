@@ -55,6 +55,7 @@ body {
 .entry-header {
 	display:;
     border-bottom: 2px solid;
+    font-size: 13px;
 }
 
 .header {
@@ -89,21 +90,38 @@ body {
 	background: #3498db;
 }
 
-#instructions{
-	
-	height: 300px;
+#description {
+	height: 350px;
 	border-bottom: 2px solid ;
+	background: #3498db;
 }
 
-.instructions-content{
+.description-content{
 	
-
 	text-align: center;
-	float: left;
 	margin-left: 80px;
 	margin-right: 80px;
 	font-family: "Open Sans";
 	color: white;
+	font-size: 25px;
+}
+
+#instructions{
+	display: flex;
+	height: 350px;
+	border-bottom: 2px solid ;
+	color: #3498db;
+	background: white
+}
+
+.instructions-content{
+	
+	text-align: center;
+	margin-left: 80px;
+	margin-right: 80px;
+	font-family: "Open Sans";
+	color: #3498db;
+	background: white;
 	font-size: 25px;
 }
 

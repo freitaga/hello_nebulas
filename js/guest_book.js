@@ -56,7 +56,7 @@ function generatePage() {
 function fillPages(entries) {
     var entry;
     var page = generatePage();
-    var container = $("<div page" + pageIndex + "/>");
+    var container = $("<div id=page" + pageIndex + "/>");
     var pageHeight = 0;
 
     page.append(container);
@@ -67,24 +67,30 @@ function fillPages(entries) {
         entry = generateEntry(entries[i]);
 
         console.log("Page height is " + pageHeight);
+        container.append(entry);
+        console.log("searching for entry by id entry" + entryIndex);
+        console.log($("#entry" + entryIndex).outerHeight());
+        pageHeight += $("#entry" + entryIndex).outerHeight();
 
         if(pageHeight > 750) {
+
+            //remove element on current page and move to next
+            $("#entry" + entryIndex).remove();
+
             //make new page
             console.log("Making new page");
             pageIndex++;
             page = generatePage();
             container = $("<div page" + pageIndex + "/>");
-
             page.append(container);
             $("#pages").append(page);
-            pageHeight = 0;
+
+
+            container.append(entry);
+            pageHeight = $("#entry" + entryIndex).outerHeight();
 
         }
 
-        container.append(entry);
-        console.log("searching for entry by id entry" + entryIndex);
-        console.log($("#entry" + entryIndex).outerHeight());
-        pageHeight += $("#entry" + entryIndex).outerHeight();
         entryIndex++;
 
 
@@ -133,9 +139,9 @@ function refreshBook() {
     
 }
 
-document.getElementById("refresh").onclick = function() {
-    refreshBook();
-}
+//document.getElementById("refresh").onclick = function() {
+  //  refreshBook();
+//}
 
 
 function AddNewEntry(resp)
