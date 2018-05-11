@@ -40,7 +40,7 @@ function updateBook(response) {
 
     if(entryList.length > 0) {
         console.log("filling last page with remaining entries");
-        fillPage(entryList);
+        fillPages(entryList);
         entryList = [];
     }
 
@@ -63,11 +63,16 @@ function fillPages(entries) {
     var page = generatePage();
     var container = $("<div/>");
 
+    page.append(container);
+    $("#pages").append(page);
     
-//////new
-for(var i = 0; i < entries.length; i++)
-{
+    //////new
+    for(var i = 0; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
+
+        console.log(entry.outerHeight());
+        console.log($("<p/>").outerHeight());
+        console.log(container.offsetHeight);
 
         if((container.offsetHeight + entry.offsetHeight) < 730){
             container.append(entry);
@@ -85,13 +90,8 @@ for(var i = 0; i < entries.length; i++)
             container.append(entry);
 
         }
-        
-        
 
-}
-page.append(container);
-
-$("#pages").append(page);
+    }
 
 // /// old
 //     for(var i = 0; i < entries.length; i++) {
