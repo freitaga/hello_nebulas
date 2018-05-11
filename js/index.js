@@ -22,8 +22,8 @@ if(typeof(webExtensionWallet) === "undefined"){
 
 function redirect(resp){
 // redirect to guestbook.html
-    console.log(resp)
-    AddNewEntry(resp);
+    //console.log(resp)
+    //AddNewEntry(resp);
 }
 
 // User clicks submit
@@ -33,10 +33,6 @@ document.getElementById("submit").onclick = function()
     var name = document.getElementById("name").value;
     var location = document.getElementById("location").value;
     var message = document.getElementById("message").value;
-
-    console.log(name);
-    console.log(location);
-    console.log(message);
 
 	refresh();
 
