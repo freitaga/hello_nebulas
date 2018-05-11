@@ -4,6 +4,8 @@ var DEBUG = false;
 
 var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
 var nebPay = new NebPay();
+var dappAddress = "n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";
+// above can probably be split into new js  script
 
 var country_code;
 
@@ -17,10 +19,6 @@ if(typeof(webExtensionWallet) === "undefined"){
     $("#submit").attr("disabled",false)
     refreshBook();
 }
-
-var dappAddress = "n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";
-// above can probably be split into new js  script
-
 
 function redirect(resp){
 // redirect to guestbook.html
