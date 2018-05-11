@@ -28,12 +28,13 @@ function updateBook(response) {
         entry = entries[i].key;
         entryList.push(entry);
 
-        if(entryList.length % 6 == 0){
-            fillPage(entryList);
-            entryList = [];
-        }
+        // if(entryList.length % 6 == 0){
+        //     fillPage(entryList);
+        //     entryList = [];
+        // }
         
     }
+    fillPages(entryList); // maybe return bool
 
     console.log(entryList);
 
@@ -57,19 +58,50 @@ function generatePage() {
     return page;
 }
 
-function fillPage(entries) {
+function fillPages(entries) {
     var entry;
     var page = generatePage();
     var container = $("<div/>");
 
-    for(var i = 0; i < entries.length; i++) {
+    
+//////new
+for(var i = 0; i < entries.length; i++)
+{
         entry = generateEntry(entries[i]);
-        container.append(entry);
-    }
-    page.append(container);
 
-    $("#pages").append(page);
+        if((container.offsetHeight + entry.offsetHeight) < 730){
+            container.append(entry);
+        }
+        else{
+            // complete current page
+            page.append(container);
+            $("#pages").append(page);
+
+            //new page
+            var page = generatePage();
+            var container = $("<div/>");
+
+            // start page with current entry
+            container.append(entry);
+
+        }
+        
+        
+
 }
+page.append(container);
+
+$("#pages").append(page);
+
+// /// old
+//     for(var i = 0; i < entries.length; i++) {
+//         entry = generateEntry(entries[i]);
+//         container.append(entry);
+//     }
+//     page.append(container);
+
+//     $("#pages").append(page);
+ }
 
 function refreshBook() {
     var to = dappAddress;
