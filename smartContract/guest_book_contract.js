@@ -11,11 +11,13 @@ var Entry = function(text) {
         this.location= o.location;
         this.address = o.address;
         this.message = o.message;
+        this.timestamp = o.timestamp;
     } else {
         this.name = "";
         this.location = "";
         this.address = "";
         this.message = "";
+        this.timestamp = "";
     }
 
 
@@ -63,12 +65,19 @@ GuestBook.prototype = {
         }
 
         var from = Blockchain.transaction.from;
+        var hasEntry = this.repo.get(from);
+        if(hasEntry){
+            throw new Error("One entry per wallet please");
+        }
+
+        var timestamp = Blockchain.transaction.timestamp;
         var entry = new Object();
 
         entry.name = name;
         entry.location = location;
         entry.address = from
         entry.message = message;
+        entry.timestamp = timestamp;
 
         
 
