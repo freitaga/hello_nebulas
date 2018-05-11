@@ -33,7 +33,7 @@
         <div id="form-div">
         	<div class="montform" id="reused_form" >
 	            <p class="name">
-	                <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
+	                <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" maxlength="24" />
 	            </p>
 	            <p class="location">
 	                <select name="location" required class="feedback-input" id="location" placeholder="Location">
@@ -290,7 +290,7 @@
 				</select>
 	            </p>
 	            <p class="text">
-	                <textarea name="message" class="feedback-input" id="message" placeholder="Message"></textarea>
+	                <textarea name="message" class="feedback-input" id="message" placeholder="Message" maxlength="512"></textarea>
 	            </p>
 	            <div class="submit">
 	                <button id="submit" type="button" class="button-blue">SUBMIT</button>
