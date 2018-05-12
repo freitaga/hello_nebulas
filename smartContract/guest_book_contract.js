@@ -108,7 +108,7 @@ GuestBook.prototype = {
         limit = parseInt(limit);
         offset = parseInt(offset);
         if (offset > this.size) {
-            throw new Error("Fffset is not valid");
+            throw new Error("Offset is not valid");
         }
         var number = offset + limit;
         if (number > this.size) {
