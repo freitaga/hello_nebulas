@@ -58,17 +58,17 @@ GuestBook.prototype = {
 
         // comments may cause deploy errors
         if(name == "" || message == ""){
-        	throw new Error("empty Name / Message");
+        	throw new Error("Missing Name / Message");
         }
         if(name.length > 24 || message.length > 512){
-        	throw new Error("Name / Message exceed limit length");
+        	throw new Error("Name / Message exceed the character limit");
         }
 
         var from = Blockchain.transaction.from;
         var hasEntry = this.dataMap.get(from);
-        // if(hasEntry){
-        //     throw new Error("One entry per wallet please");
-        // }
+        if(hasEntry){
+            throw new Error("One entry per wallet please");
+        }
 
         var timestamp = Blockchain.transaction.timestamp;
         var entry = new Object();
@@ -108,7 +108,7 @@ GuestBook.prototype = {
         limit = parseInt(limit);
         offset = parseInt(offset);
         if (offset > this.size) {
-            throw new Error("offset is not valid");
+            throw new Error("Fffset is not valid");
         }
         var number = offset + limit;
         if (number > this.size) {
