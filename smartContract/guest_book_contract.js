@@ -61,7 +61,7 @@ GuestBook.prototype = {
         	throw new Error("Missing Name / Message");
         }
         if(name.length > 24 || message.length > 512){
-        	throw new Error("Name / Message exceed the character limit");
+        	throw new Error("Name / Message exceed teh character limit");
         }
 
         var from = Blockchain.transaction.from;
