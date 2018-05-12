@@ -4,7 +4,7 @@ var DEBUG = false;
 
 var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
 var nebPay = new NebPay();
-var dappAddress = "n1kaHX9zJ7pWL9e7eSUrpnEp1vaimXCngRr";//"n1grk1z5CUSjP3MFn5o3JwdhCJFM6VfAjiq";
+var dappAddress = "n1zSQM5ppgbmJRZbvisBsfvYmsJ1j2JVWwq";
 // above can probably be split into new js  script
 
 var country_code;

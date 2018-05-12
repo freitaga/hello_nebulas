@@ -1,4 +1,4 @@
 Current Live Contract:
 
-address: n1kaHX9zJ7pWL9e7eSUrpnEp1vaimXCngRr
-tx: dcd02797bdc725267adf3601b5fd8e70aa0e4505958fdc47ca4b1313cea16246
+address: n1zSQM5ppgbmJRZbvisBsfvYmsJ1j2JVWwq
+tx: 553c51b960fa4ffead356b95c9ee8d11567fc47aef4ef735a1c3d6de30b73937
