@@ -63,7 +63,7 @@ function fillPages(entries) {
     $("#pages").append(page);
     
     //////new
-    for(var i = 0; i < entries.length; i++) {
+    for(var i = entryIndex; i < entries.length; i++) {
         entry = generateEntry(entries[i]);
 
         console.log("Page height is " + pageHeight);
@@ -72,7 +72,7 @@ function fillPages(entries) {
         console.log($("#entry" + entryIndex).outerHeight());
         pageHeight += $("#entry" + entryIndex).outerHeight();
 
-        if(pageHeight > 750) {
+        if(pageHeight > 730) {
 
             //remove element on current page and move to next
             $("#entry" + entryIndex).remove();
