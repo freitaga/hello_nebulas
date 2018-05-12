@@ -28,7 +28,8 @@ function updateBook(response) {
 }
 
 function generateEntry(entry) {
-    var entry = $( "<p id=entry" + entryIndex + "/>").append(  "<div class='entry-header'>" + "<b>" + entry.name + "</b> " + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + entry.address + "</div>");
+    var date = moment(entry.timestamp *1000).format('MMMM Do YYYY, h:mm:ss a');
+    var entry = $( "<p id=entry" + entryIndex + "/>").append(  "<div class='entry-header'>" + "<div><b>" + entry.name + "</b></div></div</div>" + "<div>" + convertToCountry(entry.location) + " " + insertFlag(entry.location.toLowerCase()) + "</div>" + "</div>" + "<br>" + entry.message + "<br>" + "<div style='padding-top: 5px; color: #999'>" + date + "<br>" + entry.address + "</div>");
     return entry;
 }
 

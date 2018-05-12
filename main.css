@@ -53,7 +53,9 @@ body {
 }
 
 .entry-header {
-	display:;
+	align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
     border-bottom: 2px solid;
     font-size: 13px;
 }
